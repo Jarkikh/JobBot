@@ -25,7 +25,7 @@ public:
 };
 
 
-string get_post(){
+string get_json_post(){
     std::string content;
 
     return content;

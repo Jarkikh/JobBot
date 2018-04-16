@@ -93,6 +93,9 @@
 		<Unit filename="/home/grisha/Git/JobBot/VK.h">
 			<Option target="JobBot"/>
 		</Unit>
+		<Unit filename="/home/grisha/Git/JobBot/WebServer.h">
+			<Option target="JobBot"/>
+		</Unit>
 		<Unit filename="/home/grisha/Git/JobBot/main.cpp">
 			<Option target="JobBot"/>
 		</Unit>

@@ -54,10 +54,10 @@ RM = /home/grisha/clion-2017.3.3/bin/cmake/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/grisha/Git/JobBot
+CMAKE_SOURCE_DIR = /root/CLionProjects/JobBot
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/grisha/Git/JobBot/cmake-build-debug
+CMAKE_BINARY_DIR = /root/CLionProjects/JobBot/cmake-build-debug
 
 #=============================================================================
 # Target rules for target CMakeFiles/JobBot.dir
@@ -66,7 +66,7 @@ CMAKE_BINARY_DIR = /home/grisha/Git/JobBot/cmake-build-debug
 CMakeFiles/JobBot.dir/all:
 	$(MAKE) -f CMakeFiles/JobBot.dir/build.make CMakeFiles/JobBot.dir/depend
 	$(MAKE) -f CMakeFiles/JobBot.dir/build.make CMakeFiles/JobBot.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/grisha/Git/JobBot/cmake-build-debug/CMakeFiles --progress-num=1,2 "Built target JobBot"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/root/CLionProjects/JobBot/cmake-build-debug/CMakeFiles --progress-num=1,2 "Built target JobBot"
 .PHONY : CMakeFiles/JobBot.dir/all
 
 # Include target in all.
@@ -76,9 +76,9 @@ all: CMakeFiles/JobBot.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/JobBot.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/grisha/Git/JobBot/cmake-build-debug/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/CLionProjects/JobBot/cmake-build-debug/CMakeFiles 2
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/JobBot.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/grisha/Git/JobBot/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/CLionProjects/JobBot/cmake-build-debug/CMakeFiles 0
 .PHONY : CMakeFiles/JobBot.dir/rule
 
 # Convenience name for target.

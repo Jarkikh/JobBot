@@ -5,4 +5,11 @@ set(CMAKE_CXX_STANDARD 11)
 
 
 add_executable(JobBot main.cpp JsonParse.h VK.h Telegram.h WebServer.h DB.h)
-target_link_libraries(JobBot curl)
+
+set(Boost_USE_STATIC_LIBS ON)
+set(Boost_USE_STATIC_RUNTIME ON)
+find_package (Boost REQUIRED system thread)
+
+include_directories(${Boost_INCLUDE_DIR})
+link_directories(${Boost_LIBRARY_DIR})
+target_link_libraries(JobBot ${Boost_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT} curl)

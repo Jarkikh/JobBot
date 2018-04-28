@@ -8,38 +8,38 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/home/grisha/Git/JobBot/cmake-build-debug"/>
+				<Option working_dir="/home/alex/TP-MAIL/CPP1/BOT/JobBot/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/grisha/Git/JobBot/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/grisha/Git/JobBot/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/grisha/Git/JobBot/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/grisha/Git/JobBot/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/alex/TP-MAIL/CPP1/BOT/JobBot/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/alex/TP-MAIL/CPP1/BOT/JobBot/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/alex/TP-MAIL/CPP1/BOT/JobBot/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/alex/TP-MAIL/CPP1/BOT/JobBot/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/home/grisha/Git/JobBot/cmake-build-debug"/>
+				<Option working_dir="/home/alex/TP-MAIL/CPP1/BOT/JobBot/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/grisha/Git/JobBot/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/grisha/Git/JobBot/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/grisha/Git/JobBot/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/grisha/Git/JobBot/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/alex/TP-MAIL/CPP1/BOT/JobBot/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/alex/TP-MAIL/CPP1/BOT/JobBot/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/alex/TP-MAIL/CPP1/BOT/JobBot/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/alex/TP-MAIL/CPP1/BOT/JobBot/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/home/grisha/Git/JobBot/cmake-build-debug"/>
+				<Option working_dir="/home/alex/TP-MAIL/CPP1/BOT/JobBot/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/grisha/Git/JobBot/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/grisha/Git/JobBot/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/grisha/Git/JobBot/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/grisha/Git/JobBot/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/alex/TP-MAIL/CPP1/BOT/JobBot/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/alex/TP-MAIL/CPP1/BOT/JobBot/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/alex/TP-MAIL/CPP1/BOT/JobBot/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/alex/TP-MAIL/CPP1/BOT/JobBot/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="JobBot">
-				<Option output="/home/grisha/Git/JobBot/cmake-build-debug/JobBot" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/grisha/Git/JobBot/cmake-build-debug"/>
+				<Option output="/home/alex/TP-MAIL/CPP1/BOT/JobBot/cmake-build-debug/JobBot" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/alex/TP-MAIL/CPP1/BOT/JobBot/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -54,15 +54,15 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/grisha/Git/JobBot/cmake-build-debug/Makefile&quot;  VERBOSE=1 JobBot"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/grisha/Git/JobBot/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/grisha/Git/JobBot/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/grisha/Git/JobBot/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/alex/TP-MAIL/CPP1/BOT/JobBot/cmake-build-debug/Makefile&quot;  VERBOSE=1 JobBot"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/alex/TP-MAIL/CPP1/BOT/JobBot/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/alex/TP-MAIL/CPP1/BOT/JobBot/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/alex/TP-MAIL/CPP1/BOT/JobBot/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="JobBot/fast">
-				<Option output="/home/grisha/Git/JobBot/cmake-build-debug/JobBot" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/grisha/Git/JobBot/cmake-build-debug"/>
+				<Option output="/home/alex/TP-MAIL/CPP1/BOT/JobBot/cmake-build-debug/JobBot" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/alex/TP-MAIL/CPP1/BOT/JobBot/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -77,29 +77,32 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/grisha/Git/JobBot/cmake-build-debug/Makefile&quot;  VERBOSE=1 JobBot/fast"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/grisha/Git/JobBot/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/grisha/Git/JobBot/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/grisha/Git/JobBot/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/alex/TP-MAIL/CPP1/BOT/JobBot/cmake-build-debug/Makefile&quot;  VERBOSE=1 JobBot/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/alex/TP-MAIL/CPP1/BOT/JobBot/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/alex/TP-MAIL/CPP1/BOT/JobBot/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/alex/TP-MAIL/CPP1/BOT/JobBot/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/grisha/Git/JobBot/JsonParse.h">
+		<Unit filename="/home/alex/TP-MAIL/CPP1/BOT/JobBot/DB.h">
 			<Option target="JobBot"/>
 		</Unit>
-		<Unit filename="/home/grisha/Git/JobBot/Telegram.h">
+		<Unit filename="/home/alex/TP-MAIL/CPP1/BOT/JobBot/JsonParse.h">
 			<Option target="JobBot"/>
 		</Unit>
-		<Unit filename="/home/grisha/Git/JobBot/VK.h">
+		<Unit filename="/home/alex/TP-MAIL/CPP1/BOT/JobBot/Telegram.h">
 			<Option target="JobBot"/>
 		</Unit>
-		<Unit filename="/home/grisha/Git/JobBot/WebServer.h">
+		<Unit filename="/home/alex/TP-MAIL/CPP1/BOT/JobBot/VK.h">
 			<Option target="JobBot"/>
 		</Unit>
-		<Unit filename="/home/grisha/Git/JobBot/main.cpp">
+		<Unit filename="/home/alex/TP-MAIL/CPP1/BOT/JobBot/WebServer.h">
 			<Option target="JobBot"/>
 		</Unit>
-		<Unit filename="/home/grisha/Git/JobBot/CMakeLists.txt">
+		<Unit filename="/home/alex/TP-MAIL/CPP1/BOT/JobBot/main.cpp">
+			<Option target="JobBot"/>
+		</Unit>
+		<Unit filename="/home/alex/TP-MAIL/CPP1/BOT/JobBot/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

@@ -5,7 +5,6 @@
 #ifndef JOBBOT_VK_H
 #define JOBBOT_VK_H
 
-#endif //JOBBOT_VK_H
 
 #include <iostream>
 #include <cstring>
@@ -30,3 +29,6 @@ string get_json_post(){
 
     return content;
 }
+
+
+#endif //JOBBOT_VK_H

@@ -3,8 +3,11 @@
 #include "VK.h"
 #include "Telegram.h"
 #include "JsonParse.h"
+#include "WebServer.h"
 
-using namespace std;
-int main(){
-    
+int main()
+{
+    WebServer ser;
+
+    ser.stop();
 }

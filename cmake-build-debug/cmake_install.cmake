@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # Install script for directory: /home/alex/TP-MAIL/CPP1/BOT/JobBot
+=======
+# Install script for directory: /root/CLionProjects/JobBot
+>>>>>>> origin/Develop
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,5 +44,9 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
+<<<<<<< HEAD
 file(WRITE "/home/alex/TP-MAIL/CPP1/BOT/JobBot/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+=======
+file(WRITE "/root/CLionProjects/JobBot/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+>>>>>>> origin/Develop
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

@@ -4,8 +4,6 @@
 
 #ifndef JOBBOT_TELEGRAM_H
 #define JOBBOT_TELEGRAM_H
-
-
 #include <iostream>
 
 

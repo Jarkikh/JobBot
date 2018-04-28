@@ -2,11 +2,6 @@
 // Created by root on 16.04.18.
 //
 
-#ifndef JOBBOT_TELEGRAM_H
-#define JOBBOT_TELEGRAM_H
-
-#endif //JOBBOT_TELEGRAM_H
-
 #include <iostream>
 
 using namespace std;

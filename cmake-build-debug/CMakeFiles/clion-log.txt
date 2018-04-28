@@ -1,4 +1,20 @@
-/home/grisha/clion-2017.3.3/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/grisha/Git/JobBot
+/home/alex/clion-2017.3.4/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/alex/TP-MAIL/CPP1/BOT/JobBot
+-- Looking for pthread.h
+-- Looking for pthread.h - found
+-- Looking for pthread_create
+-- Looking for pthread_create - not found
+-- Looking for pthread_create in pthreads
+-- Looking for pthread_create in pthreads - not found
+-- Looking for pthread_create in pthread
+-- Looking for pthread_create in pthread - found
+-- Found Threads: TRUE  
+-- Boost version: 1.58.0
+-- Found the following Boost libraries:
+--   system
+--   thread
+--   chrono
+--   date_time
+--   atomic
 -- Configuring done
 -- Generating done
--- Build files have been written to: /home/grisha/Git/JobBot/cmake-build-debug
+-- Build files have been written to: /home/alex/TP-MAIL/CPP1/BOT/JobBot/cmake-build-debug

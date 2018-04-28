@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/grisha/Git/JobBot/main.cpp" "/home/grisha/Git/JobBot/cmake-build-debug/CMakeFiles/JobBot.dir/main.cpp.o"
+  "/home/alex/TP-MAIL/CPP1/BOT/JobBot/main.cpp" "/home/alex/TP-MAIL/CPP1/BOT/JobBot/cmake-build-debug/CMakeFiles/JobBot.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

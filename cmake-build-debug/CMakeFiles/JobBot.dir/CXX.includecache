@@ -59,6 +59,12 @@ DB.h
 /home/alex/TP-MAIL/CPP1/BOT/JobBot/main.cpp
 iostream
 -
+curl/curl.h
+-
+unistd.h
+-
+algorithm
+-
 cstring
 /home/alex/TP-MAIL/CPP1/BOT/JobBot/cstring
 VK.h
@@ -69,4 +75,12 @@ JsonParse.h
 /home/alex/TP-MAIL/CPP1/BOT/JobBot/JsonParse.h
 WebServer.h
 /home/alex/TP-MAIL/CPP1/BOT/JobBot/WebServer.h
+rapidjson/document.h
+/home/alex/TP-MAIL/CPP1/BOT/JobBot/rapidjson/document.h
+rapidjson/writer.h
+/home/alex/TP-MAIL/CPP1/BOT/JobBot/rapidjson/writer.h
+rapidjson/stringbuffer.h
+/home/alex/TP-MAIL/CPP1/BOT/JobBot/rapidjson/stringbuffer.h
+DB.h
+/home/alex/TP-MAIL/CPP1/BOT/JobBot/DB.h
 

@@ -4,6 +4,7 @@
 
 #ifndef JOBBOT_VK_H
 #define JOBBOT_VK_H
+
 #include <iostream>
 #include <cstring>
 #include <curl/curl.h>
@@ -53,7 +54,7 @@ string get_post(){
     if (curl_handle)
     {
         //string access_token = "0ea566f70ea566f70ea566f7870ec73ee400ea50ea566f7546b512c23a26dc290ca23ef";
-        curl_easy_setopt(curl_handle, CURLOPT_URL, "https://api.vk.com/method/wall.get?v=5.52&access_token=0ea566f70ea566f70ea566f7870ec73ee400ea50ea566f7546b512c23a26dc290ca23ef&owner_id=-165952932&offset=0&count=1");
+        curl_easy_setopt(curl_handle, CURLOPT_URL, "https://api.vk.com/method/wall.get?v=5.52&access_token=0ea566f70ea566f70ea566f7870ec73ee400ea50ea566f7546b512c23a26dc290ca23ef&owner_id=-34116496&offset=2&count=1");
 
         curl_easy_setopt(curl_handle, CURLOPT_WRITEFUNCTION, write_data);
         curl_easy_setopt(curl_handle, CURLOPT_WRITEDATA, &content);
@@ -66,4 +67,6 @@ string get_post(){
     return content;
 }
 
+
 #endif //JOBBOT_VK_H
+

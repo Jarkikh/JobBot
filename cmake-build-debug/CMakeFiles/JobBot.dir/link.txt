@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/JobBot.dir/main.cpp.o  -o JobBot -lcurl 

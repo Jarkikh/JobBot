@@ -106,26 +106,26 @@ void update_row(int chatID, const std::string& data)
     con->close();
 }
 
-std::string** get_all_subscribers() {
+void get_all_subscribers() {
     std::auto_ptr<sql::Connection> con = create_connection();
     std::auto_ptr<sql::Statement> stmt(con->createStatement());
     int key = 0;
 
     stmt->execute("CALL get_data()");
     std::auto_ptr< sql::ResultSet > res;
-    std::string** result = new string[256];
+    //std::string** result = new string[256];
     do {
         res.reset(stmt->getResultSet());
         while (res->next()) {
             std::cout << "chat: " << (std::string)res->getString("chatID") << " key: " << (std::string)res->getString("keyWords")
                       << std::endl;
-            result[key][0] = (std::string)res->getString("keyWords");
+            //result[key][0] = (std::string)res->getString("keyWords");
             key++;
         }
     } while (stmt->getMoreResults());
 
     con->close();
-    return result;
+    //return result;
 }
 
 #endif

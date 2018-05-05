@@ -24,3 +24,9 @@ CREATE PROCEDURE updateRow( IN id INT, IN data CHAR(255) )
         SET keyWords = CONCAT(keyWords, ' ', data)
         WHERE chatID = id;
     END $$
+
+CREATE PROCEDURE get_size()
+    BEGIN
+        SELECT COUNT(*) FROM chat;
+    END
+$$

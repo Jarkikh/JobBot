@@ -16,14 +16,16 @@ $$
 CREATE PROCEDURE deleteRow( IN id int )
     BEGIN
        DELETE from chat where chatID=id;
-    END$$
+    END
+$$
 
 CREATE PROCEDURE updateRow( IN id INT, IN data CHAR(255) )
     BEGIN
         UPDATE chat
         SET keyWords = CONCAT(keyWords, ' ', data)
         WHERE chatID = id;
-    END $$
+    END
+$$
 
 CREATE PROCEDURE get_size()
     BEGIN

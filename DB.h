@@ -119,13 +119,13 @@ std::string** get_all_subscribers() {
         while (res->next()) {
             std::cout << "chat: " << (std::string)res->getString("chatID") << " key: " << (std::string)res->getString("keyWords")
                       << std::endl;
-            result[key][0] = (std::string)res->getString("keyWords");
+            //result[key][0] = (std::string)res->getString("keyWords");
             key++;
         }
     } while (stmt->getMoreResults());
 
     con->close();
-    return result;
+    //return result;
 }
 
 /* Функция возврящает количество строк в таблице

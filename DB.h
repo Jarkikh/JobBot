@@ -106,6 +106,7 @@ void update_row(int chatID, const std::string& data)
     con->close();
 }
 
+/* Функция возвращает двумерный массив стрингов с данными */
 string** get_all_subscribers() {
     std::auto_ptr<sql::Connection> con = create_connection();
     std::auto_ptr<sql::Statement> stmt(con->createStatement());

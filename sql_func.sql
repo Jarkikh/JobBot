@@ -27,6 +27,12 @@ CREATE PROCEDURE updateRow( IN id INT, IN data CHAR(255) )
     END
 $$
 
+CREATE PROCEDURE get_data()
+    BEGIN
+        SELECT * FROM chat;
+    END
+$$
+
 CREATE PROCEDURE get_size()
     BEGIN
         SELECT COUNT(*) FROM chat;

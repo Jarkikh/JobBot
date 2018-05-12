@@ -1,3 +1,8 @@
+CREATE TABLE chat (
+     chatID int PRIMARY KEY AUTO_INCREMENT,
+     keyWords char(255)
+     );
+
 DELIMITER $$
 
 CREATE PROCEDURE getWords ( IN id int, out words char(255) )

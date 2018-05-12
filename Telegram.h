@@ -4,6 +4,8 @@
 
 #ifndef JOBBOT_TELEGRAM_H
 #define JOBBOT_TELEGRAM_H
+
+
 #include <iostream>
 
 
@@ -20,6 +22,8 @@ struct Message
 
     }
 };
+
+
 
 void send_message(string message, string chat_id){
     std::string result=std::string("https://api.telegram.org/bot524193239:AAEn0Ovfo7jX3QXIYH19kIHlfNHEx1EBr2Y/sendMessage?chat_id=")+chat_id+std::string("&text=")+message;

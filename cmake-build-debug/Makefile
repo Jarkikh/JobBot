@@ -48,17 +48,10 @@ RM = /home/alex/clion-2017.3.4/bin/cmake/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-<<<<<<< HEAD
 CMAKE_SOURCE_DIR = /home/alex/TP-MAIL/CPP1/BOT/JobBot
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /home/alex/TP-MAIL/CPP1/BOT/JobBot/cmake-build-debug
-=======
-CMAKE_SOURCE_DIR = /root/CLionProjects/JobBot
-
-# The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /root/CLionProjects/JobBot/cmake-build-debug
->>>>>>> origin/Develop
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,15 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-<<<<<<< HEAD
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/alex/TP-MAIL/CPP1/BOT/JobBot/cmake-build-debug/CMakeFiles /home/alex/TP-MAIL/CPP1/BOT/JobBot/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/alex/TP-MAIL/CPP1/BOT/JobBot/cmake-build-debug/CMakeFiles 0
-=======
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/CLionProjects/JobBot/cmake-build-debug/CMakeFiles /root/CLionProjects/JobBot/cmake-build-debug/CMakeFiles/progress.marks
-	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/CLionProjects/JobBot/cmake-build-debug/CMakeFiles 0
->>>>>>> origin/Develop
 .PHONY : all
 
 # The main clean target

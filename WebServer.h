@@ -6,6 +6,7 @@
 #include <boost/asio.hpp>
 #include <boost/thread/thread.hpp>
 #include <boost/numeric/ublas/vector.hpp>
+#include <boost/algorithm/string.hpp>
 #include "Telegram.h"
 #include "JsonParse.h"
 #include "DB.h"
@@ -32,6 +33,7 @@ private:
 std::string WebServer::parse_text_and_db(Message* mes)
 {
     std::string message=mes->first_name+string("%2c ");
+    boost::algorithm::to_lower(mes->text);
     if(mes->text.substr(0,3)=="add")
     {
         unsigned long begin=mes->text.find(':',0);
@@ -42,11 +44,15 @@ std::string WebServer::parse_text_and_db(Message* mes)
         {
             message+='\'';
             std::string tag;
+            if(mes->text[begin]==' ')
+                ++begin;
             tag=mes->text.substr(begin,end-begin);
             prend=end;
             begin=end+1;
-            add_tag(mes->chat_id,tag);
-            message+=(tag+std::string("' added %0A"));
+            if(!add_tags(mes->chat_id,tag+','))
+                message+="You already have '"+tag+"' %0A";
+            else
+                message+=(tag+std::string("' added %0A"));
         }
         return message;
     }
@@ -63,8 +69,10 @@ std::string WebServer::parse_text_and_db(Message* mes)
             tag=mes->text.substr(begin,end-begin);
             prend=end;
             begin=end+1;
-            delete_tag(mes->chat_id,tag);
-            message+=(tag+std::string("' removed %0A"));
+            if(!delete_tag(mes->chat_id,tag))
+                message+="You do not have '"+tag+"' %0A";
+            else
+                message+=(tag+std::string("' removed %0A"));
         }
         return message;
     }
@@ -75,7 +83,9 @@ std::string WebServer::parse_text_and_db(Message* mes)
     }
     else if(mes->text.substr(0,4)=="list")
     {
-        return message+std::string("your tags are%3a ")+get_tags_by_subscriber(mes->chat_id);
+        std::string tagggs=get_tags_by_subscriber(mes->chat_id);
+        tagggs.pop_back();
+        return message+std::string("your tags are%3a ")+tagggs;
     }
     else if(mes->text.substr(0,4)=="help")
     {

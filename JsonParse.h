@@ -33,6 +33,7 @@ Message* parse_json_from_telegram(string json){
         string current = m->name.GetString();
         string text = "text";
         string chat = "chat";
+        string from = "from";
         if (current == text) {
             message->text = GetElementValue(m->value);
         }
@@ -41,6 +42,13 @@ Message* parse_json_from_telegram(string json){
                 string tmp1 = m1->name.GetString();
                 string id = "id";
                 if (tmp1 == id) message->chat_id = GetElementValue(m1->value);
+            }
+        }
+        else if (current == from){
+            for (Value::MemberIterator m1 = m->value.MemberBegin(); m1 != m->value.MemberEnd(); ++m1) {
+                string tmp1 = m1->name.GetString();
+                string first_name = "first_name";
+                if (tmp1 == first_name) message->first_name = GetElementValue(m1->value);
             }
         }
     }

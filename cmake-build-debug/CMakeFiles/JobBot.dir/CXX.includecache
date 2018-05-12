@@ -6,11 +6,26 @@
 
 #IncludeRegexTransform: 
 
-<<<<<<< HEAD
 /home/alex/TP-MAIL/CPP1/BOT/JobBot/DB.h
 iostream
 -
 string
+-
+cstdlib
+-
+sstream
+-
+mysql_connection.h
+/home/alex/TP-MAIL/CPP1/BOT/JobBot/mysql_connection.h
+cppconn/driver.h
+-
+cppconn/exception.h
+-
+cppconn/resultset.h
+-
+cppconn/statement.h
+-
+cppconn/prepared_statement.h
 -
 
 /home/alex/TP-MAIL/CPP1/BOT/JobBot/JsonParse.h
@@ -32,27 +47,6 @@ iostream
 -
 
 /home/alex/TP-MAIL/CPP1/BOT/JobBot/VK.h
-=======
-/root/CLionProjects/JobBot/JsonParse.h
-iostream
--
-rapidjson/document.h
-/root/CLionProjects/JobBot/rapidjson/document.h
-rapidjson/writer.h
-/root/CLionProjects/JobBot/rapidjson/writer.h
-rapidjson/stringbuffer.h
-/root/CLionProjects/JobBot/rapidjson/stringbuffer.h
-VK.h
-/root/CLionProjects/JobBot/VK.h
-Telegram.h
-/root/CLionProjects/JobBot/Telegram.h
-
-/root/CLionProjects/JobBot/Telegram.h
-iostream
--
-
-/root/CLionProjects/JobBot/VK.h
->>>>>>> origin/Develop
 iostream
 -
 cstring
@@ -60,7 +54,6 @@ cstring
 curl/curl.h
 -
 
-<<<<<<< HEAD
 /home/alex/TP-MAIL/CPP1/BOT/JobBot/WebServer.h
 iostream
 -
@@ -72,6 +65,8 @@ boost/thread/thread.hpp
 -
 boost/numeric/ublas/vector.hpp
 -
+boost/algorithm/string.hpp
+-
 Telegram.h
 /home/alex/TP-MAIL/CPP1/BOT/JobBot/Telegram.h
 JsonParse.h
@@ -80,28 +75,12 @@ DB.h
 /home/alex/TP-MAIL/CPP1/BOT/JobBot/DB.h
 
 /home/alex/TP-MAIL/CPP1/BOT/JobBot/main.cpp
-iostream
--
-cstring
-/home/alex/TP-MAIL/CPP1/BOT/JobBot/cstring
-VK.h
-/home/alex/TP-MAIL/CPP1/BOT/JobBot/VK.h
-Telegram.h
-/home/alex/TP-MAIL/CPP1/BOT/JobBot/Telegram.h
-JsonParse.h
-/home/alex/TP-MAIL/CPP1/BOT/JobBot/JsonParse.h
-WebServer.h
-/home/alex/TP-MAIL/CPP1/BOT/JobBot/WebServer.h
-=======
-/root/CLionProjects/JobBot/main.cpp
 rapidjson/document.h
-/root/CLionProjects/JobBot/rapidjson/document.h
+/home/alex/TP-MAIL/CPP1/BOT/JobBot/rapidjson/document.h
 rapidjson/writer.h
-/root/CLionProjects/JobBot/rapidjson/writer.h
+/home/alex/TP-MAIL/CPP1/BOT/JobBot/rapidjson/writer.h
 rapidjson/stringbuffer.h
-/root/CLionProjects/JobBot/rapidjson/stringbuffer.h
-src/api.h
-/root/CLionProjects/JobBot/src/api.h
+/home/alex/TP-MAIL/CPP1/BOT/JobBot/rapidjson/stringbuffer.h
 iostream
 -
 cstring
@@ -113,6 +92,11 @@ unistd.h
 algorithm
 -
 JsonParse.h
-/root/CLionProjects/JobBot/JsonParse.h
->>>>>>> origin/Develop
+/home/alex/TP-MAIL/CPP1/BOT/JobBot/JsonParse.h
+DB.h
+/home/alex/TP-MAIL/CPP1/BOT/JobBot/DB.h
+WebServer.h
+/home/alex/TP-MAIL/CPP1/BOT/JobBot/WebServer.h
+vector
+-
 

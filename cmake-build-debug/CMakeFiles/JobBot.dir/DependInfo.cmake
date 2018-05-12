@@ -4,16 +4,13 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-<<<<<<< HEAD
   "/home/alex/TP-MAIL/CPP1/BOT/JobBot/main.cpp" "/home/alex/TP-MAIL/CPP1/BOT/JobBot/cmake-build-debug/CMakeFiles/JobBot.dir/main.cpp.o"
-=======
-  "/root/CLionProjects/JobBot/main.cpp" "/root/CLionProjects/JobBot/cmake-build-debug/CMakeFiles/JobBot.dir/main.cpp.o"
->>>>>>> origin/Develop
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
+  "/usr/include/cppconn"
   )
 
 # Targets to which this target links.

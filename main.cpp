@@ -1,98 +1,118 @@
 #include "rapidjson/document.h"
 #include "rapidjson/writer.h"
 #include "rapidjson/stringbuffer.h"
-#include "src/api.h"
+//#include "src/api.h"
 #include <iostream>
 #include <cstring>
 #include <curl/curl.h>
 #include <unistd.h>
 #include <algorithm>
 #include "JsonParse.h"
+#include "DB.h"
 #include "WebServer.h"
-
+#include <vector>
 
 using namespace rapidjson;
 using namespace std;
 
-struct Client{
-public:
-    string chat_id;
-    string *words;
-};
-
-
-bool suitable(string post, string words, int size){
+bool suitable(string &post, vector<string*> &words){
     // итерируемся по post в поисках подстроки words[i]
-    bool result = false;
-    if (post.find(words) != string::npos) result = true;
+    int coincidence_count = 0;
+    int num = 0;
+    unsigned long size =  words.size();
+    double coefficient = 0.5;
+    // bool result = false;
 
+    while (num < size){
+        if (post.find(*(words[num])) != string::npos) coincidence_count++;
+        num++;
+    }
 
-    /* bool result = false;
-     for (int i = 0; i < size; ++i) {
-         if (post.find(words[i]) != string::npos) result = true;
-     }*/
-     return result;
+    return coincidence_count >= size*coefficient;
 }
 
 
 void find_siutable(Post *post){
 //цикл по всем записям в базе и вызов suitable. Если true - send_message
+    string **subscr = get_all_subscribers();
+    int size = get_size();
+    vector<string*> all_words;
+    all_words.reserve(10);
+    string post_lower=boost::algorithm::to_lower_copy(post->text);
+    for (int i = 0; i < size; ++i)
+    {
+        string chat_id = subscr[i][0];
+        for (std::string::iterator it = subscr[i][1].begin(); it < subscr[i][1].end(); it++)
+        {
+            string *one_word = new string();
+            while (*it != ',')
+            {
+                one_word->push_back(*it);
+                it++;
+            }
+            all_words.push_back(one_word);
+
+        }
+        if (suitable(post_lower, all_words))
+        {
+            send_message(post->text, chat_id);
+            return;
+        }
+    }
+    for(int i=0;i<size;++i)
+        delete[] subscr[i];
+    delete[] subscr;
 }
 
 
-int main()
-{
-    WebServer ser;
-
-    Message *message;
-    string json = "{""\"update_id\":654794788,""\"message\":""{""\"message_id\":29,""\"from\":""{""\"id\":462194591,""\"is_bot\":false,""\"first_name\":\"Alex\",""\"username\":\"Sighr\",""\"language_code\":\"ru\"""},""\"chat\":""{""\"id\":462194591,""\"first_name\":\"Alex\",""\"username\":\"Sighr\",""\"type\":\"private\"""},""\"date\":1523365267,""\"text\":\"МЕНЕДЖЕР\"""}""}";
-    message = parse_json_from_telegram(json);
-
-    //1. тут идет добавление в базу данных от Леши
-
-    cout << "id чата = " << message->chat_id<< endl << "Ключевое слово: " << message->text << endl;
-    cout << endl;
-    cout << endl;
-    cout << endl;
-
-    //2. Тут идет вытаскиваение записи из группы вконтакте.
-
-    string json_post = get_post();
-
-    //cout << json_post << endl;
-
-    Post* post = parse_json_from_vk(json_post);
-
-    cout << post->text << endl;
+int main() {
 
     //3. Прогон всех пользователей из базы по записи. При соответветствии - отсылка записи пользователю.
+    WebServer ser;
 
-   /* string json_post_prev = get_post(); //  Тело приложения
+    int count = 10; //количество возможных групп
+
+    string offset = "1";
+
+    string id_1 = "165952932";
+    string id_2 = "34116496";
+
+    vector<string> groups;
+    groups.reserve(count);
+    groups.push_back(id_1);
+    groups.push_back(id_2);
+
+    vector<Post*> previous_post;
+    previous_post.resize(count);
+
+    for (int i = 0; i < previous_post.size(); ++i) {
+        previous_post[i] = new Post();
+    }
+
+
+
+    // string json_post_prev = get_post(id); //  Тело приложения
+    //auto post_prev = new Post();
+
     while (true) {
-        string json_post = get_post();
+        for (int i = 0; i < groups.size(); ++i) {
+            string json_post_new = get_post(groups[i],offset);
 
-        if (new_post != post_prev) {
-            Post *post = parse_json_from_vk(json_post);
-            find_siutable(post);
-        } else cout << "No update" << endl;
+            Post *new_post = parse_json_from_vk(json_post_new);
+            //cout << previous_post[i]->text << endl;
 
-        json_post_prev = json_post;
+            if (new_post->text != previous_post[i]->text) {
+                find_siutable(new_post);
+            } else cout << "No update" << endl;
+
+            previous_post[i]->text = new_post->text;
+
+            delete(new_post);
+        }
 
         sleep(1800);  //4. Ждем пол часа - достаем еще запись и сравниваем ее с предыдущей. если != то п 3.
 
-    }*/
+    }
 
-
-    cout << endl;
-    cout << endl;
-    cout << endl;
-    cout << endl;
-    cout << endl;
-    if (suitable(post->text,message->text,3)) cout << "Подходящая запись!";
-    else cout << "Не подходит";
-
-
-
-    ser.stop();
     return 0;
 }

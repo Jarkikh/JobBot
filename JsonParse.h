@@ -14,6 +14,32 @@
 using namespace std;
 using namespace rapidjson;
 
+
+string encode_url(const string &str){
+    CURL *curl = curl_easy_init();
+    string result;
+    if(curl) {
+        char *output = curl_easy_escape(curl, str.c_str(), str.length());
+
+        result = output;
+        curl_free(output);
+    }
+    return result;
+}
+
+
+string decode_url(const string &str){
+    CURL *curl = curl_easy_init();
+    string result;
+    if(curl) {
+        char *output = curl_easy_unescape(curl,str.c_str(),str.length(),NULL);
+
+        result = output;
+        curl_free(output);
+    }
+    return result;
+}
+
 std::string GetElementValue(Value& val)
 {
     if (val.GetType() == Type::kNumberType)

@@ -13,6 +13,116 @@
 
 bool done;
 
+class Message_Handler
+{
+public:
+    std::string operator()(Message* mes);
+private:
+    std::string add(Message* mes);
+    std::string remove(Message* mes);
+    std::string unsubscribe(Message* mes);
+    std::string show_all(Message* mes);
+    std::string help();
+    std::string do_not_recognize();
+};
+
+std::string Message_Handler::operator()(Message* mes)
+{
+    std::string result=mes->first_name+string(", ");
+    boost::algorithm::to_lower(mes->text);
+    if(mes->text.substr(0,10)=="добав")
+        result+=this->add(mes);
+    else if(mes->text.substr(0,8)=="удал")
+        result+=this->remove(mes);
+    else if(mes->text.substr(0,10)=="отпис")
+        result+=this->unsubscribe(mes);
+    else if(mes->text.substr(0,12)=="список")
+        result+=this->show_all(mes);
+    else if(mes->text.substr(0,6)=="епт")
+        result=this->help();
+    else
+        result+=this->do_not_recognize();
+    delete mes;
+    result=encode_url(result);
+    return result;
+}
+std::string Message_Handler::add(Message *mes)
+{
+    std::string message;
+    unsigned long begin=mes->text.find(':',0);
+    ++begin;
+    unsigned long end = begin;
+    unsigned long prend = end;
+    while((end=mes->text.find(',',begin),prend)<=begin)
+    {
+        std::string tag;
+        if(mes->text[begin]==' ')
+            ++begin;
+        tag=mes->text.substr(begin,end-begin);
+        prend=end;
+        begin=end+1;
+        if(!add_tags(mes->chat_id,encode_url(tag)+','))
+            message+="вы уже добавили тег '"+tag+"' \n";
+        else
+        {
+            message+='\'';
+            message+=(tag+std::string("' — тег добавлен \n"));
+        }
+    }
+    return message;
+}
+
+std::string Message_Handler::remove(Message *mes)
+{
+    std::string message;
+    unsigned long begin=mes->text.find(':',0);
+    ++begin;
+    unsigned long end = begin;
+    unsigned long prend = end;
+    while((end=mes->text.find(',',begin),prend)<=begin)
+    {
+        std::string tag;
+        if(mes->text[begin]==' ')
+            ++begin;
+        tag=mes->text.substr(begin,end-begin);
+        prend=end;
+        begin=end+1;
+        if(!delete_tag(mes->chat_id,encode_url(tag)))
+            message+="у вас нет тега '"+tag+"' \n";
+        else
+        {
+            message+='\'';
+            message+=(tag+std::string("' — тег удалён \n"));
+        }
+    }
+    return message;
+}
+
+std::string Message_Handler::unsubscribe(Message *mes)
+{
+    std::string message;
+    delete_all_tags(mes->chat_id);
+    return message+std::string("вы успешно отписались!");
+}
+
+std::string Message_Handler::show_all(Message *mes)
+{
+    std::string message;
+    std::string tagggs=get_tags_by_subscriber(mes->chat_id);
+    tagggs.pop_back();
+    tagggs=decode_url(tagggs);
+    return message+std::string("ваши теги: ")+tagggs;
+}
+
+std::string Message_Handler::help()
+{
+    return std::string("Для того, чтобы добавить теги, используйте \"добавить: тег1, тег2 ...\". \n Для удаления тега используйте команду \"Удалить\". \n Для отображения действующих тегов \"Список\". \n Для того, чтобы отписаться от рассылки \"Отписаться\". ");
+}
+
+std::string Message_Handler::do_not_recognize()
+{
+    return std::string("ваше сообщение не было распознано нашими алгоритмами.\n Попробуйте 'епт'");
+}
 
 class WebServer
 {
@@ -23,77 +133,12 @@ public:
 private:
     static void server();
     static void data_handling(boost::asio::ip::tcp::socket* sock);
-    static std::string parse_text_and_db(Message*);
     static std::string extract_json(char* data);
     static unsigned short const port=15578;
     static int const max_length=4096;
     boost::thread thr;
 };
 
-std::string WebServer::parse_text_and_db(Message* mes)
-{
-    std::string message=mes->first_name+string("%2c ");
-    boost::algorithm::to_lower(mes->text);
-    if(mes->text.substr(0,3)=="add")
-    {
-        unsigned long begin=mes->text.find(':',0);
-        ++begin;
-        unsigned long end = begin;
-        unsigned long prend = end;
-        while((end=mes->text.find(',',begin),prend)<=begin)
-        {
-            message+='\'';
-            std::string tag;
-            if(mes->text[begin]==' ')
-                ++begin;
-            tag=mes->text.substr(begin,end-begin);
-            prend=end;
-            begin=end+1;
-            if(!add_tags(mes->chat_id,tag+','))
-                message+="You already have '"+tag+"' %0A";
-            else
-                message+=(tag+std::string("' added %0A"));
-        }
-        return message;
-    }
-    else if(mes->text.substr(0,6)=="remove")
-    {
-        unsigned long begin=mes->text.find(':',0);
-        ++begin;
-        unsigned long end = begin;
-        unsigned long prend = end;
-        while((end=mes->text.find(',',begin),prend)<=begin)
-        {
-            message+='\'';
-            std::string tag;
-            tag=mes->text.substr(begin,end-begin);
-            prend=end;
-            begin=end+1;
-            if(!delete_tag(mes->chat_id,tag))
-                message+="You do not have '"+tag+"' %0A";
-            else
-                message+=(tag+std::string("' removed %0A"));
-        }
-        return message;
-    }
-    else if(mes->text.substr(0,6)=="unsubs")
-    {
-        delete_all_tags(mes->chat_id);
-        return message+std::string("you successfully unsubscribed!");
-    }
-    else if(mes->text.substr(0,4)=="list")
-    {
-        std::string tagggs=get_tags_by_subscriber(mes->chat_id);
-        tagggs.pop_back();
-        return message+std::string("your tags are%3a ")+tagggs;
-    }
-    else if(mes->text.substr(0,4)=="help")
-    {
-        return std::string("Usage:%0Aadd:%20tag1,%20tag2...%20-%20to%20add%20you%20in%20subscriber's%20list%20on%20these%20tags%0Aremove:%20tag1,%20tag2...%20-%20to%20remove%20you%20from%20subscriber's%20list%20on%20these%20tags%0Aunsubscribe%20-%20to%20remove%20you%20from%20subscriber's%20list%0Alist%20-%20to%20list%20your%20tags");
-    }
-    else
-        return message+std::string("we cannot recognize your message%0ATry \"help\"");
-}
 
 std::string WebServer::extract_json(char* data)
 {
@@ -128,10 +173,9 @@ void WebServer::data_handling(boost::asio::ip::tcp::socket* sock)
         std::cout << json << std::endl;
         Message* mes=parse_json_from_telegram(json);
         std::string ch_id=mes->chat_id;
-        std::string name=mes->first_name;
-        std::string message=parse_text_and_db(mes);
+        Message_Handler handle;
+        std::string message=handle(mes);
         send_message(message,ch_id);
-        delete mes;
     }
     catch (std::exception& e)
     {

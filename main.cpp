@@ -55,6 +55,7 @@ void find_siutable(Post *post){
         }
         if (suitable(post_lower, all_words))
         {
+            post->text=encode_url(post->text);
             send_message(post->text, chat_id);
             return;
         }
@@ -69,7 +70,7 @@ int main() {
 
     //3. Прогон всех пользователей из базы по записи. При соответветствии - отсылка записи пользователю.
     WebServer ser;
-
+/*
     int count = 10; //количество возможных групп
 
     string offset = "1";
@@ -100,6 +101,7 @@ int main() {
 
             Post *new_post = parse_json_from_vk(json_post_new);
             //cout << previous_post[i]->text << endl;
+            new_post->text=decode_url(new_post->text);
 
             if (new_post->text != previous_post[i]->text) {
                 find_siutable(new_post);
@@ -113,6 +115,6 @@ int main() {
         sleep(1800);  //4. Ждем пол часа - достаем еще запись и сравниваем ее с предыдущей. если != то п 3.
 
     }
-
+*/
     return 0;
 }

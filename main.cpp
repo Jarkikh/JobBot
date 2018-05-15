@@ -32,7 +32,7 @@ bool suitable(string &post, vector<string*> &words){
 }
 
 
-void find_siutable(Post *post){
+void find_suitable(Post *post){
 //цикл по всем записям в базе и вызов suitable. Если true - send_message
     string **subscr = get_all_subscribers();
     int size = get_size();
@@ -65,12 +65,19 @@ void find_siutable(Post *post){
     delete[] subscr;
 }
 
+void stop_func()
+{
+    while(!done)
+        cin >> done;
+}
+
 
 int main() {
 
     //3. Прогон всех пользователей из базы по записи. При соответветствии - отсылка записи пользователю.
+    done=false;
     WebServer ser;
-/*
+    boost::thread stopper(boost::bind(stop_func));
     int count = 10; //количество возможных групп
 
     string offset = "1";
@@ -95,7 +102,7 @@ int main() {
     // string json_post_prev = get_post(id); //  Тело приложения
     //auto post_prev = new Post();
 
-    while (true) {
+    while (!done) {
         for (int i = 0; i < groups.size(); ++i) {
             string json_post_new = get_post(groups[i],offset);
 
@@ -104,7 +111,7 @@ int main() {
             new_post->text=decode_url(new_post->text);
 
             if (new_post->text != previous_post[i]->text) {
-                find_siutable(new_post);
+                find_suitable(new_post);
             } else cout << "No update" << endl;
 
             previous_post[i]->text = new_post->text;
@@ -115,6 +122,7 @@ int main() {
         sleep(1800);  //4. Ждем пол часа - достаем еще запись и сравниваем ее с предыдущей. если != то п 3.
 
     }
-*/
+    //while(!done);
+    ser.stop();
     return 0;
 }

@@ -15,20 +15,16 @@ struct Message
     std::string text;
     std::string first_name;
 
-    Message(){
-
-    }
-    ~Message(){
-
-    }
+    Message()=default;
+    ~Message()=default;
 };
 
 
 
-void send_message(string message, string chat_id)
+void send_message(const string& message, const string& chat_id)
 {
     std::string result=std::string("https://api.telegram.org/bot524193239:AAEn0Ovfo7jX3QXIYH19kIHlfNHEx1EBr2Y/sendMessage?chat_id=")+chat_id+std::string("&text=")+message;
-    std::cout << result;
+    //std::cout << result;
     CURL * curl_handle = curl_easy_init();
     if(curl_handle)
     {

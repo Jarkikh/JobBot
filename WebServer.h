@@ -128,7 +128,7 @@ class WebServer
 {
 public:
     WebServer() {done=false; thr=/*new */boost::thread(boost::bind(WebServer::server));}
-    void stop() {done=true; this->~WebServer(); }
+    void stop() {done=true; this->~WebServer();}
     ~WebServer() { thr.join(); /*delete thr;*/}
 private:
     static void server();

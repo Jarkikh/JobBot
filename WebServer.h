@@ -127,10 +127,21 @@ std::string Message_Handler::do_not_recognize()
 class WebServer
 {
 public:
-    WebServer() {done=false; thr=/*new */boost::thread(boost::bind(WebServer::server));}
-    void stop() {done=true; this->~WebServer();}
+    WebServer(WebServer&)=delete;
+    WebServer(WebServer&&)=delete;
+    WebServer& operator=(WebServer&)=delete;
+    WebServer& operator=(WebServer&&)=delete;
+    void stop() {done=true; instance=nullptr; this->~WebServer();}
     ~WebServer() { thr.join(); /*delete thr;*/}
+    static WebServer* get_instance()
+    {
+        if(instance==nullptr)
+            instance=new WebServer();
+        return instance;
+    }
 private:
+    WebServer() {done=false; thr=/*new */boost::thread(boost::bind(WebServer::server));}
+    static WebServer* instance;
     static void server();
     static void data_handling(boost::asio::ip::tcp::socket* sock);
     static std::string extract_json(char* data);
@@ -139,6 +150,7 @@ private:
     boost::thread thr;
 };
 
+WebServer* WebServer::instance = nullptr;
 
 std::string WebServer::extract_json(char* data)
 {

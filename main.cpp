@@ -42,6 +42,7 @@ void find_suitable(Post *post){
     for (int i = 0; i < size; ++i)
     {
         string chat_id = subscr[i][0];
+        subscr[i][1]=decode_url(subscr[i][1]);
         for (std::string::iterator it = subscr[i][1].begin(); it < subscr[i][1].end(); it++)
         {
             string *one_word = new string();
@@ -76,7 +77,7 @@ int main() {
 
     //3. Прогон всех пользователей из базы по записи. При соответветствии - отсылка записи пользователю.
     done=false;
-    WebServer ser;
+    WebServer* ser=WebServer::get_instance();
     boost::thread stopper(boost::bind(stop_func));
     int count = 10; //количество возможных групп
 
@@ -123,6 +124,6 @@ int main() {
 
     }
     //while(!done);
-    ser.stop();
+    ser->stop();
     return 0;
 }

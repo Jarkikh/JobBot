@@ -1,1 +1,1 @@
-/usr/bin/c++  -g   CMakeFiles/JobBot.dir/main.cpp.o  -o JobBot -lcurl 
+/usr/bin/c++   -g   CMakeFiles/JobBot.dir/main.cpp.o  -o JobBot -lmysqlcppconn /usr/lib/i386-linux-gnu/libboost_system.a /usr/lib/i386-linux-gnu/libboost_thread.a /usr/lib/i386-linux-gnu/libboost_chrono.a /usr/lib/i386-linux-gnu/libboost_date_time.a /usr/lib/i386-linux-gnu/libboost_atomic.a -lpthread -lpthread -lcurl 

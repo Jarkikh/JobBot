@@ -1,7 +1,7 @@
 #include "rapidjson/document.h"
 #include "rapidjson/writer.h"
 #include "rapidjson/stringbuffer.h"
-#include "src/api.h"
+//#include "src/api.h"
 #include <iostream>
 #include <cstring>
 #include <curl/curl.h>
@@ -10,62 +10,122 @@
 #include "JsonParse.h"
 #include "DB.h"
 #include "WebServer.h"
+#include <vector>
 
 using namespace rapidjson;
 using namespace std;
 
-struct Client{
-public:
-    string chat_id;
-    string *words;
-};
-
-
-bool suitable(string &post, string &words){
+bool suitable(string &post, vector<string*> &words){
     // итерируемся по post в поисках подстроки words[i]
-    bool result = false;
-    if (post.find(words) != string::npos) result = true;
+    int coincidence_count = 0;
+    int num = 0;
+    unsigned long size =  words.size();
+    double coefficient = 0.5;
+    // bool result = false;
 
-    return result;
+    while (num < size){
+        if (post.find(*(words[num])) != string::npos) coincidence_count++;
+        num++;
+    }
+
+    return coincidence_count >= size*coefficient;
 }
 
 
-void find_siutable(Post *post){
+void find_suitable(Post *post){
 //цикл по всем записям в базе и вызов suitable. Если true - send_message
-    Selection* selection = get_all_subscribers();
-    for (int i = 0; i < selection->size; ++i) {
-        for (int j = 0; j < selection->subs->size; ++j) {
-            if (suitable(post->text,selection->subs[i].tags[j])) {
-                send_message(post->text,selection->subs[i].chat_id);
-                break;
+    string **subscr = get_all_subscribers();
+    int size = get_size();
+    vector<string*> all_words;
+    all_words.reserve(10);
+    string post_lower=boost::algorithm::to_lower_copy(post->text);
+    for (int i = 0; i < size; ++i)
+    {
+        string chat_id = subscr[i][0];
+        subscr[i][1]=decode_url(subscr[i][1]);
+        for (std::string::iterator it = subscr[i][1].begin(); it < subscr[i][1].end(); it++)
+        {
+            string *one_word = new string();
+            while (*it != ',')
+            {
+                one_word->push_back(*it);
+                it++;
             }
+            all_words.push_back(one_word);
+
+        }
+        if (suitable(post_lower, all_words))
+        {
+            post->text=encode_url(post->text);
+            send_message(post->text, chat_id);
+            return;
         }
     }
+    for(int i=0;i<size;++i)
+        delete[] subscr[i];
+    delete[] subscr;
+}
+
+void stop_func()
+{
+    while(!done)
+        cin >> done;
 }
 
 
 int main() {
 
     //3. Прогон всех пользователей из базы по записи. При соответветствии - отсылка записи пользователю.
-    WebServer ser;
+    done=false;
+    WebServer* ser=WebServer::get_instance();
+    boost::thread stopper(boost::bind(stop_func));
+    int count = 10; //количество возможных групп
 
-    string json_post_prev = get_post(); //  Тело приложения
-    Post *post_prev = parse_json_from_vk(json_post_prev);
-    while (true) {
-        string json_post_new = get_post();
-        Post *new_post = parse_json_from_vk(json_post_new);
+    string offset = "1";
 
-        cout << post_prev->text << endl;
+    string id_1 = "165952932";
+    string id_2 = "34116496";
 
-        if (new_post->text != post_prev->text) {
-            find_siutable(new_post);
-        } else cout << "No update" << endl;
+    vector<string> groups;
+    groups.reserve(count);
+    groups.push_back(id_1);
+    groups.push_back(id_2);
 
-        post_prev = new_post;
+    vector<Post*> previous_post;
+    previous_post.resize(count);
+
+    for (int i = 0; i < previous_post.size(); ++i) {
+        previous_post[i] = new Post();
+    }
+
+
+
+    // string json_post_prev = get_post(id); //  Тело приложения
+    //auto post_prev = new Post();
+
+    while (!done) {
+        for (int i = 0; i < groups.size(); ++i) {
+            string json_post_new = get_post(groups[i],offset);
+
+            if (!json_correct(json_post_new)) continue;
+
+            Post *new_post = parse_json_from_vk(json_post_new);
+            //cout << previous_post[i]->text << endl;
+            new_post->text=decode_url(new_post->text);
+
+            if (new_post->text != previous_post[i]->text) {
+                find_suitable(new_post);
+            } else cout << "No update" << endl;
+
+            previous_post[i]->text = new_post->text;
+
+            delete(new_post);
+        }
 
         sleep(1800);  //4. Ждем пол часа - достаем еще запись и сравниваем ее с предыдущей. если != то п 3.
 
     }
-
+    //while(!done);
+    ser->stop();
     return 0;
 }

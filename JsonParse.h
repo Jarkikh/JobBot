@@ -1,6 +1,9 @@
 //
 // Created by root on 16.04.18.
 //
+
+#ifndef JOBBOT_JSONPARSE_H
+#define JOBBOT_JSONPARSE_H
 #include <iostream>
 #include "rapidjson/document.h"
 #include "rapidjson/writer.h"
@@ -11,6 +14,37 @@
 using namespace std;
 using namespace rapidjson;
 
+bool json_correct(string &json) {
+    if (json.substr(2, 8) == "response")
+        return true;
+    return false;
+}
+
+string encode_url(const string &str){
+    CURL *curl = curl_easy_init();
+    string result;
+    if(curl) {
+        char *output = curl_easy_escape(curl, str.c_str(), str.length());
+
+        result = output;
+        curl_free(output);
+    }
+    return result;
+}
+
+
+string decode_url(const string &str){
+    CURL *curl = curl_easy_init();
+    string result;
+    if(curl) {
+        char *output = curl_easy_unescape(curl,str.c_str(),str.length(),NULL);
+
+        result = output;
+        curl_free(output);
+    }
+    return result;
+}
+
 std::string GetElementValue(Value& val)
 {
     if (val.GetType() == Type::kNumberType)
@@ -19,6 +53,7 @@ std::string GetElementValue(Value& val)
         return val.GetString();
     return "Unknown";
 }
+
 
 Message* parse_json_from_telegram(string json){
     Message *message = new Message();
@@ -70,3 +105,4 @@ Post* parse_json_from_vk(string json) {
     return post;
 }
 
+#endif
